@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { ProductContext } from "../Context/ProductContext";
+import { ProductList } from "./Products/ProductList";
 
 function Home() {
   const { products } = useContext(ProductContext);
@@ -13,9 +14,7 @@ function Home() {
 
   return (
     <div>
-      {products.map((item, index) => {
-        return <p key={index}>{item.category}</p>;
-      })}
+      <ProductList allProducts={filteredProducts} />
     </div>
   );
 }

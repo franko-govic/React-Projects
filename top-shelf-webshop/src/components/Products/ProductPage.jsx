@@ -1,23 +1,17 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Rating from "react-rating";
+import { ProductContext } from "../../Context/ProductContext";
 
 function ProductPage() {
-  const urlParams = useParams();
-  const [product, setProduct] = useState({});
-  const [loading, setLoading] = useState(true);
-  const URLProductID = urlParams.id;
+  const { id } = useParams();
+  const { products } = useContext(ProductContext);
 
-  useEffect(() => {
-    setLoading(true); // Set loading to true when fetching data
-    fetch("https://dummyjson.com/products/" + URLProductID)
-      .then((res) => res.json())
-      .then((json) => {
-        console.log("Product", json);
-        setProduct(json);
-        setLoading(false); // Set loading to false when data is fetched
-      });
-  }, [URLProductID]);
+  const product = products.find((item) => {
+    return item.id === parseInt(id);
+  });
+
+  console.log(product);
 
   return (
     <div>
@@ -59,4 +53,4 @@ function ProductPage() {
   );
 }
 
-export { ProductPage };
+export default ProductPage;

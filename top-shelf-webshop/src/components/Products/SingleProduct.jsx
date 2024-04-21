@@ -1,6 +1,4 @@
-import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-import Rating from "react-rating";
 import {
   RiEyeLine,
   RiHeartFill,
@@ -10,10 +8,10 @@ import {
 import { useState } from "react";
 
 function SingleProduct({ productContent }) {
-  function addToCartHandler(event) {
-    event.preventDefault();
-    toast("Added to cart");
-  }
+  // function addToCartHandler(event) {
+  //   event.preventDefault();
+  //   toast("Added to cart");
+  // }
 
   const [wishlistState, setWishlistState] = useState(false);
 
@@ -22,40 +20,34 @@ function SingleProduct({ productContent }) {
   }
 
   return (
-    <div className="w-72 bg-white shadow-md rounded-xl duration-500 cursor-pointer hover:shadow-xl ">
+    <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:shadow-xl ">
       {productContent ? (
         <>
-          <div className="relative group">
+          <div className="relative group ">
             <img
               src={productContent.thumbnail}
               alt={productContent.title}
               className="h-80 w-72 object-center object-cover rounded-t-xl"
             />
-            <div className="flex gap-5 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white py-2 px-2 rounded shadow-md invisible group-hover:visible">
-              <div className="flex justify-between gap-3">
-                <button
-                  className="hover:scale-125"
-                  onClick={(event) => addToCartHandler(event)}
-                >
+            <div className="absolute top-3 right-3 flex flex-col justify-center items-center gap-y-2 opacity-0 group-hover:opacity-100 ">
+              <button>
+                <div className="w-12 h-12 bg-white flex justify-center items-center text-black rounded-lg">
                   <RiShoppingCartLine />
-                </button>
-              </div>
-
-              <div className="flex justify-between gap-3">
-                <button
-                  className="hover:scale-125"
-                  onClick={() => wishlistHandler()}
-                >
+                </div>
+              </button>
+              <button onClick={() => wishlistHandler()}>
+                <div className="w-12 h-12 bg-black flex justify-center items-center text-white rounded-lg">
                   {wishlistState ? <RiHeartFill /> : <RiHeartLine />}
+                </div>
+              </button>
+              <Link
+                to={"/product/" + productContent.id}
+                className="w-12 h-12 bg-black flex justify-center items-center text-white rounded-lg"
+              >
+                <button>
+                  <RiEyeLine />
                 </button>
-              </div>
-              <div className="flex justify-between gap-3">
-                <button className="hover:scale-125">
-                  <Link to={"/product/" + productContent.id}>
-                    <RiEyeLine />
-                  </Link>
-                </button>
-              </div>
+              </Link>
             </div>
           </div>
 
@@ -63,10 +55,12 @@ function SingleProduct({ productContent }) {
             <span className="text-gray-400 mr-3 uppercase text-xs">
               {productContent.brand}
             </span>
+            <Link to={"/product/" + productContent.id}>
+              <p className="text-lg font-bold text-black truncate block capitalize">
+                {productContent.title}
+              </p>
+            </Link>
 
-            <p className="text-lg font-bold text-black truncate block capitalize">
-              {productContent.title}
-            </p>
             <div className="flex items-center">
               <p className="text-lg font-semibold text-black cursor-auto my-3">
                 ${productContent.price}
