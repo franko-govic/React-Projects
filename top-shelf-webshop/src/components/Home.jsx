@@ -1,34 +1,21 @@
-import { ProductList } from "./Products/ProductList.jsx";
-import { useEffect, useState } from "react";
-import { toast } from "react-hot-toast";
+import { useContext } from "react";
+import { ProductContext } from "../Context/ProductContext";
 
 function Home() {
-  const [productList, setProductList] = useState([]);
+  const { products } = useContext(ProductContext);
+  console.log("products from home comp -->", products);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("https://dummyjson.com/products");
-        const data = await response.json();
-        console.log("data =>", data);
-        setProductList(data.products);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-    fetchProducts();
-  }, []);
+  const filteredProducts = products.filter((item) => {
+    return item.category === "smartphones" || item.category === "laptops";
+  });
+
+  console.log("filtered", filteredProducts);
 
   return (
     <div>
-      <video className="aspect-video" autoPlay muted loop>
-        <source
-          src="https://cdn.pixabay.com/video/2017/03/26/8501-210166782_large.mp4"
-          type="video/mp4"
-        />
-        Your browser does not support the video tag.
-      </video>
-      <ProductList products={productList} />
+      {products.map((item, index) => {
+        return <p key={index}>{item.category}</p>;
+      })}
     </div>
   );
 }

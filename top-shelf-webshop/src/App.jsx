@@ -1,30 +1,22 @@
-import { Home } from "./components/Home"
-import Layout from "./components/Layout"
-import { Page } from "./components/Page"
-import { ProductList } from "./components/Products/ProductList"
-import { ProductPage } from "./components/Products/ProductPage"
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom"
+import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
+import { Home } from "./components/Home";
+import { ProductPage } from "./components/Products/ProductPage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
- 
   return (
     <>
-    <BrowserRouter>
+      <Router>
+        <Header />
         <Routes>
-          <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-              <Route path='/contact' element={<Page title={"Contact"} />} />
-              <Route path='/about' element={<Page />} />
-              <Route path='/product' element={<Outlet />} >
-                <Route path='/product/:id' element={<ProductPage />} />
-              </Route>
-          </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={ProductPage} />
         </Routes>
-      </BrowserRouter> 
+        <Footer />
+      </Router>
     </>
-  )
+  );
 }
 
-export default App
-
-
+export default App;

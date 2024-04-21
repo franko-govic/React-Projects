@@ -1,50 +1,60 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../../Context/UserContext";
+import { useState, useEffect } from "react";
 import Rating from "react-rating";
 
 function ProductPage() {
   const urlParams = useParams();
-  console.log("urlparams =>", urlParams);
   const [product, setProduct] = useState({});
+  const [loading, setLoading] = useState(true);
   const URLProductID = urlParams.id;
 
   useEffect(() => {
+    setLoading(true); // Set loading to true when fetching data
     fetch("https://dummyjson.com/products/" + URLProductID)
       .then((res) => res.json())
       .then((json) => {
         console.log("Product", json);
         setProduct(json);
+        setLoading(false); // Set loading to false when data is fetched
       });
-  }, []);
-
-  console.log("URL params Detailed product view =>", urlParams);
-
-  const { basket, setBasket } = useContext(UserContext);
-
-  function addToBasketHandler() {
-    const item = {
-      name: "Mouse 112j",
-      id: 231,
-    };
-    setBasket({
-      ...basket,
-      items: [...basket.items, item],
-    });
-    console.log("basket content", basket);
-  }
+  }, [URLProductID]);
 
   return (
-    <div className="flex justify-center">
-      <div>
-        <img src={product.thumbnail} alt="" />
-      </div>
-      <div>
-        <span>{product.title}</span>
-        <p>{product.brand}</p>
-        <Rating initialRating={product.rating} readonly />
-        <p>{product.description}</p>
-      </div>
+    <div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="flex flex-row justify-center lg:flex-row gap-1 lg-w-full">
+          <div className="flex flex-col gap-6">
+            <img
+              src={product.thumbnail}
+              className="w-full h-full aspect-video object-cover object-center rounded sahdow-xl"
+              alt={product.title}
+            />
+            <div className="flex flex-col  justify-center gap-5  h-24 ">
+              {product.images.map((productImage, index) => (
+                <img
+                  key={index}
+                  src={productImage}
+                  alt={`Product Image ${index}`}
+                  className="w-24 h-24 rounded-md cursor-pointer"
+                />
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-col gap-4">
+            <p>{product.brand}</p>
+            <p className="text-4xl">{product.title}</p>
+            <p>{product.description}</p>
+            <div className="flex gap-2">
+              <Rating initialRating={product.rating} />
+              <p>{product.rating}</p>
+            </div>
+            <p>${product.price}</p>
+            <p>{product.stock > 0 ? "in stock" : "not avaliable"}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
