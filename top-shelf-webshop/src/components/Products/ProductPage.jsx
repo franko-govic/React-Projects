@@ -1,56 +1,57 @@
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
-import Rating from "react-rating";
 import { ProductContext } from "../../Context/ProductContext";
+import Rating from "react-rating";
 
 function ProductPage() {
   const { id } = useParams();
   const { products } = useContext(ProductContext);
+  const product = products.find((item) => item.id === parseInt(id));
 
-  const product = products.find((item) => {
-    return item.id === parseInt(id);
-  });
+  if (!product) {
+    return <p>Loading...</p>;
+  }
 
-  console.log(product);
+  const {
+    title,
+    brand,
+    price,
+    description,
+    thumbnail,
+    images,
+    rating,
+    discountPercentage,
+  } = product;
 
   return (
-    <div>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div className="flex flex-row justify-center lg:flex-row gap-1 lg-w-full">
-          <div className="flex flex-col gap-6">
-            <img
-              src={product.thumbnail}
-              className="w-full h-full aspect-video object-cover object-center rounded sahdow-xl"
-              alt={product.title}
-            />
-            <div className="flex flex-col  justify-center gap-5  h-24 ">
-              {product.images.map((productImage, index) => (
-                <img
-                  key={index}
-                  src={productImage}
-                  alt={`Product Image ${index}`}
-                  className="w-24 h-24 rounded-md cursor-pointer"
-                />
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-col gap-4">
-            <p>{product.brand}</p>
-            <p className="text-4xl">{product.title}</p>
-            <p>{product.description}</p>
-            <div className="flex gap-2">
-              <Rating initialRating={product.rating} />
-              <p>{product.rating}</p>
-            </div>
-            <p>${product.price}</p>
-            <p>{product.stock > 0 ? "in stock" : "not avaliable"}</p>
+    <div className="container mx-auto pt-12 h-screen">
+      <div className="grid grid-cols-1 lg:grid-cols-2  items-center">
+        <div className="flex flex-col items-center ">
+          <img src={thumbnail} alt={title} className="max-w-xl mb-3 rounded" />
+          <div className="flex justify-center item-center gap-3 ">
+            {images.map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                alt={`Product Image ${index}`}
+                className="w-20 h-20 rounded-md cursor-pointer"
+              />
+            ))}
           </div>
         </div>
-      )}
+        <div className="text-center lg:text-left ">
+          <p className="text-lg">{brand}</p>
+          <h1 className="text-2xl font-medium mb-2">{title}</h1>
+          <p className="text-md font-semibold text-red-600">${price}</p>
+          <Rating initialRating={rating} />
+          <p className="mb-4">{description}</p>
+          <button className="bg-blue-900 py-3 px-6 text-white">
+            Add to cart
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default ProductPage;
+export { ProductPage };
