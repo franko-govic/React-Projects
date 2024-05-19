@@ -4,17 +4,10 @@ import { ProductList } from "./Products/ProductList";
 
 function Home() {
   const { products } = useContext(ProductContext);
-  console.log("products from home comp -->", products);
-
-  const filteredProducts = products.filter((item) => {
-    return item.category === "smartphones" || item.category === "laptops";
-  });
-
-  console.log("filtered", filteredProducts);
 
   return (
     <div className="mt-24">
-      <ProductList allProducts={filteredProducts} />
+      <ProductList allProducts={products} />
     </div>
   );
 }

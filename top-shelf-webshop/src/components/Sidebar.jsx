@@ -39,7 +39,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             />
             <button
               type="submit"
-              className="py-2 px-4 bg-gray-200 text-black font-medium hover:text-white hover:bg-black"
+              className="flex-1 py-2 px-4 bg-gray-200 text-black font-medium hover:text-white hover:bg-black"
             >
               CONFIRM COUPON
             </button>
