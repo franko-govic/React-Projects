@@ -13,7 +13,7 @@ function Home() {
   console.log("filtered", filteredProducts);
 
   return (
-    <div>
+    <div className="mt-24">
       <ProductList allProducts={filteredProducts} />
     </div>
   );
