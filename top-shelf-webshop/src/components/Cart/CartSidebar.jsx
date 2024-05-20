@@ -1,23 +1,23 @@
 import React, { useContext } from "react";
-import { CartContext } from "../Context/CartContext";
-import { CartItem } from "./Cart/CartItem";
+import { CartContext } from "../../Context/CartContext";
+import { CartItem } from "./CartItem";
 import { RiCloseCircleLine, RiDeleteBinLine } from "@remixicon/react";
 
-const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
-  const sidebarClose = () => {
-    setSidebarOpen(!sidebarOpen);
+const CartSidebar = ({ cartSidebarOpen, setCartSidebarOpen }) => {
+  const cartSidebarClose = () => {
+    setCartSidebarOpen(!cartSidebarOpen);
   };
   const { cart, clearCart, total } = useContext(CartContext);
 
   return (
     <div
       className={`${
-        sidebarOpen ? "right-0" : "-right-full"
+        cartSidebarOpen ? "right-0" : "-right-full"
       } w-full bg-white fixed top-0 bottom-0 h-full shadow-2xl md:w-[40vw] xl:max-w-[30vw] transition-all duration-500 z-20 px-4 lg:px-[35px] border-b border-grey flex flex-col justify-between`}
     >
       <div className="flex justify-between items-center border-b border-grey py-6">
         <h2 className="font-semibold">CART ({cart.length})</h2>
-        <button onClick={sidebarClose}>
+        <button onClick={cartSidebarClose}>
           <RiCloseCircleLine />
         </button>
       </div>
@@ -69,4 +69,4 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   );
 };
 
-export { Sidebar };
+export { CartSidebar };

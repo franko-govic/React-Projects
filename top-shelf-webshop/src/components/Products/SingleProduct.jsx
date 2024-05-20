@@ -21,7 +21,7 @@ function SingleProduct({ productContent }) {
   const { addToCart } = useContext(CartContext);
 
   return (
-    <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:shadow-xl ">
+    <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:shadow-xl snap-center">
       {productContent ? (
         <>
           <div className="relative group ">

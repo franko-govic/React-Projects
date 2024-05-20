@@ -19,8 +19,12 @@ const ProductProvider = ({ children }) => {
     fetchProducts();
   }, []);
 
+  const manualFilterProducts = (filterBy, name) => {
+    return products.filter((product) => product[filterBy].includes(name));
+  };
+
   return (
-    <ProductContext.Provider value={{ products }}>
+    <ProductContext.Provider value={{ products, manualFilterProducts }}>
       {children}
     </ProductContext.Provider>
   );
