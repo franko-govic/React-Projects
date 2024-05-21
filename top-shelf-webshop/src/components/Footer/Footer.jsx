@@ -6,7 +6,7 @@ import { LegislativeLinks } from "./LegislativeLinks";
 
 function Footer() {
   return (
-    <div className="grid grid-cols-1 bg-zinc-900 text-white">
+    <div className="grid grid-cols-1 bg-red-300 text-white">
       <div className="grid grid-cols-1 sm:grid-cols-2">
         <div className="grid grid-cols-1 ">
           <div className="ring-1 ring-inset ring-white">

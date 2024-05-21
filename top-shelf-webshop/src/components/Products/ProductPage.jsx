@@ -12,16 +12,8 @@ function ProductPage() {
     return <p>Loading...</p>;
   }
 
-  const {
-    title,
-    brand,
-    price,
-    description,
-    thumbnail,
-    images,
-    rating,
-    discountPercentage,
-  } = product;
+  const { title, brand, price, description, thumbnail, images, rating } =
+    product;
 
   return (
     <div className="container mx-auto pt-12 h-screen">
