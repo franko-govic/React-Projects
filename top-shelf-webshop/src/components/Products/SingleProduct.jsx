@@ -3,7 +3,7 @@ import {
   RiEyeLine,
   RiHeartFill,
   RiHeartLine,
-  RiShoppingCartLine,
+  RiShoppingBag2Line,
 } from "@remixicon/react";
 import { useState, useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
@@ -21,35 +21,35 @@ function SingleProduct({ productContent }) {
   const { addToCart } = useContext(CartContext);
 
   return (
-    <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:shadow-xl snap-center">
+    <div className="w-72 bg-white shadow-sm  duration-500 hover:shadow-xl  p-3 bg-gray-100">
       {productContent ? (
         <>
           <div className="relative group ">
             <img
               src={thumbnail}
               alt={title}
-              className="h-80 w-72 object-center object-cover rounded-t-xl"
+              className="h-80 w-72 object-center object-cover "
             />
             <div className="absolute top-3 right-3 flex flex-col justify-center items-center gap-y-2 opacity-0 group-hover:opacity-100 ">
               <button
                 onClick={() => addToCart(productContent, id)}
                 className="hover:scale-105 active:scale-95"
               >
-                <div className="w-12 h-12 bg-white flex justify-center items-center text-black rounded-lg">
-                  <RiShoppingCartLine />
+                <div className="w-10 h-10 bg-white flex justify-center items-center text-black rounded-full">
+                  <RiShoppingBag2Line />
                 </div>
               </button>
               <button
                 onClick={() => wishlistHandler()}
                 className="hover:scale-105 active:scale-95"
               >
-                <div className="w-12 h-12 bg-black flex justify-center items-center text-white rounded-lg">
+                <div className="w-10 h-10  bg-black flex justify-center items-center text-white rounded-full">
                   {wishlistState ? <RiHeartFill /> : <RiHeartLine />}
                 </div>
               </button>
               <Link
                 to={"/product/" + id}
-                className="w-12 h-12 bg-black flex justify-center items-center text-white rounded-lg hover:scale-105 active:scale-95"
+                className="w-10 h-10  bg-black flex justify-center items-center text-white rounded-full hover:scale-105 active:scale-95"
               >
                 <button>
                   <RiEyeLine />
@@ -69,7 +69,7 @@ function SingleProduct({ productContent }) {
             </Link>
 
             <div className="flex items-center">
-              <p className="text-lg font-semibold text-black cursor-auto my-3">
+              <p className="text-lg font-semibold text-black cursor-auto ">
                 ${price}
               </p>
               <del>

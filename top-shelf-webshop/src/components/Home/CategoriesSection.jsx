@@ -12,7 +12,7 @@ function CategoriesSection() {
     "Lighting",
   ];
   return (
-    <div className="grid grid-cols-2 gap-5 px-10 h-[82vh] sm:grid-cols-4 lg:grid-cols-8">
+    <div className="grid grid-cols-2 gap-5 px-10 h-[82vh] sm:grid-cols-4 ">
       {categories.map((category, index) => {
         return (
           <div
