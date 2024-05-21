@@ -9,7 +9,9 @@ function Home() {
     <div className="mt-24">
       <div>
         <h1 className="text-xl text-center font-bold uppercase">Fragrance</h1>
-        <ProductList products={manualFilterProducts("category", "fragrance")} />
+        <ProductList
+          products={manualFilterProducts("category", "fragrances")}
+        />
       </div>
       <div>
         <h1 className="text-xl text-center font-bold uppercase">HP</h1>

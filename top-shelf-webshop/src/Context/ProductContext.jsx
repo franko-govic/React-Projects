@@ -20,7 +20,7 @@ const ProductProvider = ({ children }) => {
   }, []);
 
   const manualFilterProducts = (filterBy, name) => {
-    return products.filter((product) => product[filterBy].includes(name));
+    return products.filter((product) => product[filterBy] === name);
   };
 
   return (
