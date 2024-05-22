@@ -2,22 +2,21 @@ import React, { useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
 import { CartItem } from "./CartItem";
 import { RiCloseCircleLine, RiDeleteBinLine } from "@remixicon/react";
+import { UIContext } from "../../Context/UIContext";
 
-const CartSidebar = ({ cartSidebarOpen, setCartSidebarOpen }) => {
-  const cartSidebarClose = () => {
-    setCartSidebarOpen(!cartSidebarOpen);
-  };
+const CartSidebar = () => {
   const { cart, clearCart, total } = useContext(CartContext);
+  const { UIState, toggleCartSidebar } = useContext(UIContext);
 
   return (
     <div
       className={`${
-        cartSidebarOpen ? "right-0" : "-right-full"
-      } w-full bg-white fixed top-0 bottom-0 h-full shadow-2xl md:w-[40vw] xl:max-w-[30vw] transition-all duration-500 z-20 px-4 lg:px-[35px] border-b border-grey flex flex-col justify-between`}
+        UIState.cartSidebar ? "right-0" : "-right-full"
+      } w-full bg-white fixed top-0 bottom-0 h-full shadow-2xl md:w-[40vw] xl:max-w-[30vw] transition-all duration-500 z-20 px-4 lg:px-[35px] border-b border-grey flex flex-col justify-between text-sm`}
     >
       <div className="flex justify-between items-center border-b border-grey py-6">
         <h2 className="font-semibold">CART ({cart.length})</h2>
-        <button onClick={cartSidebarClose}>
+        <button onClick={() => toggleCartSidebar}>
           <RiCloseCircleLine />
         </button>
       </div>
@@ -35,11 +34,11 @@ const CartSidebar = ({ cartSidebarOpen, setCartSidebarOpen }) => {
               name=""
               id=""
               placeholder="Enter coupon"
-              className="flex-1 py-2 border border-gray-300 hover:border-black text-center"
+              className="flex-1 py-3 border border-gray-300 hover:border-black text-center"
             />
             <button
               type="submit"
-              className="flex-1 py-2 px-4 bg-gray-200 text-black font-medium hover:text-white hover:bg-black"
+              className="flex-1 py-3 px-4 bg-gray-200 text-black font-medium hover:text-white hover:bg-black"
             >
               CONFIRM COUPON
             </button>

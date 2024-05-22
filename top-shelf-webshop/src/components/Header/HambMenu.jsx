@@ -7,14 +7,17 @@ import {
   RiStoreLine,
   RiUserLine,
 } from "@remixicon/react";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UIContext } from "../../Context/UIContext";
 
-const HambMenu = ({ hambMenuOpen }) => {
+const HambMenu = () => {
+  const { UIState, toggleDropdown } = useContext(UIContext);
+
   return (
     <div
       className={`${
-        hambMenuOpen ? "top-16 left-0 right-0 " : "hidden"
+        UIState.dropdown ? "top-16 left-0 right-0 " : "hidden"
       } w-full bg-white absolute  shadow-2xl  transition-all duration-500  border-b border-grey flex flex-col gap-5  px-5 pb-7 `}
     >
       <div className="w-full py-5 flex flex-col gap-5 border-b border-gray-300">
@@ -26,7 +29,7 @@ const HambMenu = ({ hambMenuOpen }) => {
           <RiCrosshairLine />
           <p>New In</p>
         </Link>
-        <Link to="/" className="flex gap-3">
+        <Link to="/shop" className="flex gap-3">
           <RiStoreLine />
           <p>Shop</p>
         </Link>

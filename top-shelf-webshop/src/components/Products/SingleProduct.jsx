@@ -35,7 +35,7 @@ function SingleProduct({ productContent }) {
                 onClick={() => addToCart(productContent, id)}
                 className="hover:scale-105 active:scale-95"
               >
-                <div className="w-10 h-10 bg-white flex justify-center items-center text-black rounded-full">
+                <div className="p-2 bg-white flex justify-center items-center text-black rounded-full">
                   <RiShoppingBag2Line />
                 </div>
               </button>
@@ -43,13 +43,13 @@ function SingleProduct({ productContent }) {
                 onClick={() => wishlistHandler()}
                 className="hover:scale-105 active:scale-95"
               >
-                <div className="w-10 h-10  bg-black flex justify-center items-center text-white rounded-full">
+                <div className="p-2  bg-black flex justify-center items-center text-white rounded-full">
                   {wishlistState ? <RiHeartFill /> : <RiHeartLine />}
                 </div>
               </button>
               <Link
                 to={"/product/" + id}
-                className="w-10 h-10  bg-black flex justify-center items-center text-white rounded-full hover:scale-105 active:scale-95"
+                className="p-2 bg-black flex justify-center items-center text-white rounded-full hover:scale-105 active:scale-95"
               >
                 <button>
                   <RiEyeLine />

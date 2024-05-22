@@ -10,19 +10,21 @@ import {
 } from "@remixicon/react";
 import { Link } from "react-router-dom";
 import { HambMenu } from "./HambMenu";
+import { UIContext } from "../../Context/UIContext";
 
 function Header() {
-  const [cartSidebarOpen, setCartSidebarOpen] = useState(false);
   const [hambMenuOpen, setHambMenuOpen] = useState(false);
 
   const { itemAmount } = useContext(CartContext);
+  const { UIState, toggleCartSidebar, toggleDropdown } = useContext(UIContext);
+
   return (
     <div className="fixed top-0 left-0 right-0  bg-white py-5 px-7 flex justify-between items-center z-20">
       <div
         className="flex justify-start items-center flex-1 cursor-pointer w-10 h-10 md:hidden "
-        onClick={() => setHambMenuOpen(!hambMenuOpen)}
+        onClick={() => toggleDropdown()}
       >
-        {hambMenuOpen ? <RiCloseLine /> : <RiMenuLine />}
+        {UIState.dropdown ? <RiCloseLine /> : <RiMenuLine />}
       </div>
       <div className="hidden md:flex justify-start items-center md:gap-5 md:flex-1">
         <Link to="/">Home</Link>
@@ -41,8 +43,8 @@ function Header() {
           <RiHeartLine />
         </div>
         <div
-          onClick={() => setCartSidebarOpen(!cartSidebarOpen)}
-          className="cursor-pointer w-10 h-10 border border-gray-400 rounded-full flex justify-center items-center  relative"
+          onClick={() => toggleCartSidebar}
+          className="cursor-pointer p-2 border border-gray-400 rounded-full flex justify-center items-center  relative"
         >
           <RiShoppingBag2Line />
           <div className="bg-red-500 absolute right-0 bottom-0 w-4 h-4 flex justify-center items-center  rounded-full text-xs font-bold text-white">
@@ -50,11 +52,8 @@ function Header() {
           </div>
         </div>
       </div>
-      <HambMenu hambMenuOpen={hambMenuOpen} setHambMenuOpen={setHambMenuOpen} />
-      <CartSidebar
-        cartSidebarOpen={cartSidebarOpen}
-        setCartSidebarOpen={setCartSidebarOpen}
-      />
+      <HambMenu />
+      <CartSidebar />
     </div>
   );
 }
