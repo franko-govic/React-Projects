@@ -13,16 +13,14 @@ import { HambMenu } from "./HambMenu";
 import { UIContext } from "../../Context/UIContext";
 
 function Header() {
-  const [hambMenuOpen, setHambMenuOpen] = useState(false);
-
   const { itemAmount } = useContext(CartContext);
-  const { UIState, toggleCartSidebar, toggleDropdown } = useContext(UIContext);
+  const { UIState, toggleUIState } = useContext(UIContext);
 
   return (
     <div className="fixed top-0 left-0 right-0  bg-white py-5 px-7 flex justify-between items-center z-20">
       <div
         className="flex justify-start items-center flex-1 cursor-pointer w-10 h-10 md:hidden "
-        onClick={() => toggleDropdown()}
+        onClick={() => toggleUIState("dropdown")}
       >
         {UIState.dropdown ? <RiCloseLine /> : <RiMenuLine />}
       </div>
@@ -43,7 +41,7 @@ function Header() {
           <RiHeartLine />
         </div>
         <div
-          onClick={() => toggleCartSidebar}
+          onClick={() => toggleUIState("cartSidebar")}
           className="cursor-pointer p-2 border border-gray-400 rounded-full flex justify-center items-center  relative"
         >
           <RiShoppingBag2Line />

@@ -74,7 +74,7 @@ function SingleProduct({ productContent }) {
               </p>
               <del>
                 <p className="text-sm text-gray-600 cursor-auto ml-2">
-                  ${price - Math.round(discountPercentage)}
+                  ${(price - Math.round(discountPercentage)).toFixed(2)}
                 </p>
               </del>
             </div>

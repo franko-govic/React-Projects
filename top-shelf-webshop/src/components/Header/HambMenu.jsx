@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { UIContext } from "../../Context/UIContext";
 
 const HambMenu = () => {
-  const { UIState, toggleDropdown } = useContext(UIContext);
+  const { UIState, toggleUIState } = useContext(UIContext);
 
   return (
     <div
@@ -29,7 +29,11 @@ const HambMenu = () => {
           <RiCrosshairLine />
           <p>New In</p>
         </Link>
-        <Link to="/shop" className="flex gap-3">
+        <Link
+          to="/shop"
+          className="flex gap-3"
+          onClick={() => toggleUIState("dropdown")}
+        >
           <RiStoreLine />
           <p>Shop</p>
         </Link>

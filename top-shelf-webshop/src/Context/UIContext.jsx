@@ -6,19 +6,15 @@ const UIProvider = ({ children }) => {
   const [UIState, setUIState] = useState({
     cartSidebar: false,
     dropdown: false,
+    mobileFilter: false,
+    filterCategory: false,
+    filterBrand: false,
   });
 
-  const toggleCartSidebar = () => {
+  const toggleUIState = (property) => {
     setUIState((prevState) => ({
       ...prevState,
-      cartSidebar: !prevState.cartSidebar,
-    }));
-  };
-
-  const toggleDropdown = () => {
-    setUIState((prevState) => ({
-      ...prevState,
-      dropdown: !prevState.dropdown,
+      [property]: !prevState[property],
     }));
   };
 
@@ -27,8 +23,7 @@ const UIProvider = ({ children }) => {
       value={{
         UIState,
         setUIState,
-        toggleCartSidebar,
-        toggleDropdown,
+        toggleUIState,
       }}
     >
       {children}

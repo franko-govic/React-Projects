@@ -6,7 +6,7 @@ import { UIContext } from "../../Context/UIContext";
 
 const CartSidebar = () => {
   const { cart, clearCart, total } = useContext(CartContext);
-  const { UIState, toggleCartSidebar } = useContext(UIContext);
+  const { UIState, toggleUIState } = useContext(UIContext);
 
   return (
     <div
@@ -16,7 +16,7 @@ const CartSidebar = () => {
     >
       <div className="flex justify-between items-center border-b border-grey py-6">
         <h2 className="font-semibold">CART ({cart.length})</h2>
-        <button onClick={() => toggleCartSidebar}>
+        <button onClick={() => toggleUIState("cartSidebar")}>
           <RiCloseCircleLine />
         </button>
       </div>
@@ -50,7 +50,7 @@ const CartSidebar = () => {
           </div>
           <div
             className=" 	                          cursor-pointer bg-red-500 text-white w-12 h-12 flex justify-center items-center"
-            onClick={clearCart}
+            onClick={() => clearCart()}
           >
             <RiDeleteBinLine />
           </div>
