@@ -22,7 +22,7 @@ const CartProvider = ({ children }) => {
     const total = cart.reduce((acc, currentItem) => {
       return acc + currentItem.price * currentItem.amount;
     }, 0);
-    setTotal(total);
+    setTotal(total.toFixed(2));
   }, [cart]);
 
   const addToCart = (product, id) => {

@@ -21,14 +21,14 @@ function SingleProduct({ productContent }) {
   const { addToCart } = useContext(CartContext);
 
   return (
-    <div className="w-72 bg-white shadow-sm  duration-500 hover:shadow-xl  p-3 bg-gray-100">
+    <div className="w-full  bg-white shadow-sm  duration-500 hover:shadow-xl  bg-gray-100 border">
       {productContent ? (
         <>
-          <div className="relative group ">
+          <div className="relative group">
             <img
               src={thumbnail}
               alt={title}
-              className="h-80 w-72 object-center object-cover "
+              className="w-full h-full object-center object-cover"
             />
             <div className="absolute top-3 right-3 flex flex-col justify-center items-center gap-y-2 opacity-0 group-hover:opacity-100 ">
               <button
@@ -58,7 +58,7 @@ function SingleProduct({ productContent }) {
             </div>
           </div>
 
-          <div className="px-4 py-3 w-72">
+          <div className="px-4 py-3">
             <span className="text-gray-400 mr-3 uppercase text-xs">
               {brand}
             </span>
@@ -74,7 +74,7 @@ function SingleProduct({ productContent }) {
               </p>
               <del>
                 <p className="text-sm text-gray-600 cursor-auto ml-2">
-                  ${(price - Math.round(discountPercentage)).toFixed(2)}
+                  ${(price / (1 - discountPercentage / 100)).toFixed(2)}
                 </p>
               </del>
             </div>

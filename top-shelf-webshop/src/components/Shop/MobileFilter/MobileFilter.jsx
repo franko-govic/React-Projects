@@ -12,7 +12,7 @@ function MobileFilter() {
     <div
       className={`${
         UIState.mobileFilter ? "bottom-0" : "-bottom-full"
-      } fixed  right-0 left-0 z-20 h-[90vh] bg-white ring-2 ring-red-400 rounded-t-xl flex flex-col justify-between items-center py-5 px-5 transition-all duration-700`}
+      } fixed  w-full  z-20 h-[90vh] bg-white ring-2 ring-red-400 rounded-t-xl flex flex-col justify-between items-center py-5 px-5 transition-all duration-700`}
     >
       <FilterTitle title="filter" toggle="mobileFilter" />
       <div className="w-full flex-1 flex flex-col justify-between pl-2 py-10 capitalize">
@@ -22,10 +22,10 @@ function MobileFilter() {
         <div className="capitalize flex flex-col gap-3">
           <p>Stock</p>
           <div className="flex items-center justify-start gap-4 text-sm">
-            <label htmlFor="">
+            <label htmlFor="" className="flex gap-2 items-center">
               <input type="radio" /> in stock
             </label>
-            <label htmlFor="">
+            <label htmlFor="" className="flex gap-2 items-center">
               <input type="radio" /> out of stock
             </label>
           </div>

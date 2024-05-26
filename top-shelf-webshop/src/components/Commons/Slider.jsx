@@ -6,13 +6,19 @@ function Slider() {
       <p>Price range</p>
 
       <div className="w-full flex flex-col gap-4">
-        <div className="flex gap-5 text-sm">
-          <label htmlFor="" className="flex-1 flex flex-col-reverse gap-2">
-            <input type="text" className="border border-zinc-300" />
+        <div className="w-full flex flex-wrap gap-2 text-sm sm:gap-5">
+          <label
+            htmlFor=""
+            className="flex-1 flex flex-col-reverse  gap-2 min-w-0"
+          >
+            <input type="text" className="border border-zinc-300 p-1" />
             From
           </label>
-          <label htmlFor="" className="flex-1 flex flex-col-reverse gap-2">
-            <input type="text" className="border border-zinc-300" />
+          <label
+            htmlFor=""
+            className="flex-1 flex flex-col-reverse  gap-2  min-w-0"
+          >
+            <input type="text" className="border border-zinc-300 p-1" />
             to
           </label>
         </div>

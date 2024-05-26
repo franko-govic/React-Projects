@@ -17,7 +17,7 @@ function Home() {
       </div>
       <div>
         <h1 className="text-xl text-center font-bold uppercase">Apple</h1>
-        <ProductList products={manualFilterProducts("brand", "Apple")} />
+        <ProductList products={manualFilterProducts("category", "laptops")} />
       </div>
     </div>
   );
